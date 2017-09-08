@@ -1,0 +1,15 @@
+Write a program in LEX to read a file input.txt and to remove extra spaces and store output in a output.txt file.
+Source Code
+  int n,m;
+%%
+[ \t\n]+ m++;fprintf(yyout," ");
+[^ \t\n] n++;fprintf(yyout,"%s",yytext);
+%%
+int main()
+{
+extern FILE *yyin,*yyout;
+yyin=fopen("input.txt","r");
+yyout=fopen("output.txt","w");
+yylex();
+return 0;
+}

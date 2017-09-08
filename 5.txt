@@ -1,0 +1,18 @@
+
+Write a program in LEX to read a file input.txt and to display no of lines, no of words, and no of characters in it.
+Source Code
+  int l,w,c;
+%%
+\n l++;
+[A-Za-z][A-Za-z]* w++;
+. c++;
+%%
+int main()
+{
+ extern FILE *yyin;
+ yyin=fopen("input.txt","r");
+ yylex();
+ printf("No of Lines= %d\n",l);
+ printf("No of Words= %d\n",w);
+ printf("No of Characters= %d\n",c);
+}

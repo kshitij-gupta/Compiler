@@ -1,0 +1,34 @@
+/* Program to accept int, float and identifier. */
+
+%s A B C D E F
+%%
+<INITIAL>[+-] BEGIN A;
+<INITIAL>[0-9] BEGIN B;
+<INITIAL>[a-zA-Z_] BEGIN E;
+<INITIAL>[^0-9a-zA-Z_\n] BEGIN F;
+<A>[0-9] BEGIN B;
+<A>[^0-9\n] BEGIN F;
+<B>[0-9] BEGIN B;
+<B>"." BEGIN C;
+<B>[^0-9.\n] BEGIN F;
+<C>[0-9] BEGIN D;
+<C>[^0-9\n] BEGIN F;
+<D>[0-9] BEGIN D;
+<D>[^0-9\n] BEGIN F;
+<E>[a-zA-Z_] BEGIN E;
+<E>[^a-zA-Z_\n] BEGIN F;
+<F>[^\n] BEGIN F;
+<F>\n printf("INVALID INPUT !!!!\n\n");BEGIN INITIAL;
+<INITIAL>\n printf("String not Accepted\n\n");BEGIN INITIAL;
+<A>\n printf("String not Accepted\n\n");BEGIN INITIAL;
+<B>\n printf("Integer\n\n");BEGIN INITIAL;
+<C>\n printf("String Not Accepted!!!\n\n");BEGIN INITIAL;
+<D>\n printf("Float\n\n");BEGIN INITIAL;
+<E>\n printf("Identifier\n\n");BEGIN INITIAL;
+%%
+int main()
+{
+  yylex();
+  printf("Program to accept int, float and identifier.\n");
+  return 0;
+}

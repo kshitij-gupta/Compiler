@@ -1,0 +1,45 @@
+/* Program to accept string with #rd last character 'a'. */
+
+%s B C D E F G H I
+%%
+<INITIAL>a BEGIN B;
+<INITIAL>b BEGIN INITIAL;
+<INITIAL>[^ab\n] BEGIN I;
+<B>a BEGIN E;
+<B>b BEGIN C;
+<B>[^\nab] BEGIN I;
+<C>a BEGIN F;
+<C>b BEGIN D;
+<C>[^ab\n] BEGIN I;
+<D>a BEGIN B;
+<D>b BEGIN INITIAL;
+<D>[^ab\n] BEGIN I;
+<E>a BEGIN H;
+<E>b BEGIN G;
+<E>[^ab\n] BEGIN I;
+<F>a BEGIN E;
+<F>b BEGIN C;
+<F>[^ab\n] BEGIN I;
+<G>a BEGIN F;
+<G>b BEGIN D;
+<G>[^ab\n] BEGIN I;
+<H>a BEGIN H;
+<H>b BEGIN G;
+<H>[^ab\n] BEGIN I;
+<I>[^\n] BEGIN I;
+<I>\n printf("INVALID INPUT !!!!\n\n");BEGIN INITIAL; 
+<INITIAL>\n printf("String Not Accepted!!!\n\n");BEGIN INITIAL;
+<H>\n printf("String Accepted\n\n");BEGIN INITIAL;
+<B>\n printf("String Not Accepted!!!\n\n");BEGIN INITIAL;
+<C>\n printf("String Not Accepted!!!\n\n");BEGIN INITIAL;
+<D>\n printf("String Accepted\n\n");BEGIN INITIAL;
+<E>\n printf("String Not Accepted!!!\n\n");BEGIN INITIAL;
+<F>\n printf("String Accepted\n\n");BEGIN INITIAL;
+<G>\n printf("String Accepted\n\n");BEGIN INITIAL;
+%%
+int main()
+{
+  yylex();
+  printf("Program to accept string with third last character a\n");
+  return 0;
+}

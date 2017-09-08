@@ -1,0 +1,56 @@
+/* Program to accept string with even no of 'a' and even no of 'b'. */
+
+
+%s A B C D
+
+%%
+
+<INITIAL>a BEGIN A;
+
+<INITIAL>b BEGIN C;
+
+<INITIAL>[^ab\n] BEGIN D;
+
+<A>a BEGIN INITIAL;
+
+<A>b BEGIN B;
+
+<A>[^\nab] BEGIN D;
+
+<B>a BEGIN C;
+
+<B>b BEGIN A;
+
+<B>[^ab\n] BEGIN D;
+
+<C>a BEGIN B;
+
+<C>b BEGIN INITIAL;
+
+<C>[^ab\n] BEGIN D;
+
+<D>[^\n] BEGIN D;
+
+<D>\n printf("INVALID INPUT !!!!\n\n");BEGIN INITIAL;
+
+<INITIAL>\n printf("String Accepted\n\n");BEGIN INITIAL;
+
+<A>\n printf("String Not Accepted!!!\n\n");BEGIN INITIAL;
+
+<B>\n printf("String Not Accepted!!!\n\n");BEGIN INITIAL;
+
+<C>\n printf("String Not Accepted!!!\n\n");BEGIN INITIAL;
+
+%%
+
+int main()
+
+{
+
+  yylex();
+  
+printf("Program to accept even no of a's and b's\n");
+
+  return 0;
+
+}

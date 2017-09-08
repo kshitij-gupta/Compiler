@@ -1,0 +1,13 @@
+Write a program in LEX to count and display valid dentifier
+Source Code
+int n,m;
+%%
+[A-Za-z_][A-Za-z0-9_]* n++; printf("ID:%s \n ",yylex);
+. m++;
+%%	
+int main()
+{ 
+   yylex();
+   printf("Total Valid Identifiers are: %d\n",n);
+   return 0;
+} 

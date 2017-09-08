@@ -1,0 +1,16 @@
+/*Design a Lex code for counting number of lines, 
+tab character, space character and rest of the characters in a given paragraph.*/
+ int n,m,o,p;
+%%
+"\n" n++;
+"\t" o++;
+" " p++;
+. m++;
+%%
+int main()
+{yylex();
+printf("No. of lines=%d\n",n);
+printf("No. of tabs=%d\n",o);
+printf("No. of space=%d\n",p);
+printf("No. of other characters=%d\n",m);
+return 0;

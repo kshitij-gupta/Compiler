@@ -1,0 +1,15 @@
+%{
+	#include<stdlib.h>
+	int yylval;
+	#include"y.tab.h"
+%}
+%%
+"int"|"float"				{return key;}
+[_a-zA-Z][_a-zA-Z0-9]*		{return id;}
+[ ;,\n] 					return *yytext;
+.		 			;
+%%
+int yywrap(void)
+{
+	return 1;
+}

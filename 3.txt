@@ -1,0 +1,16 @@
+	
+Design a code in Lex to count and print the value of integer and floating point numbers.
+Source Code
+int n,m,o;
+%%
+[0-9]+ n++; printf("Integer Scanner:%s\n",yytext); 
+[0-9]*\.[0-9]+ m++; printf("Floating Point Number Scanner:%s\n",yytext); 
+. o++;
+%%
+int main()
+{
+	yylex();
+	printf("Integers:%d\nFloating Point:%d\n",n,m);
+	return 0;
+
+}

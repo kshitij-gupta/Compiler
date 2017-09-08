@@ -1,0 +1,26 @@
+Design a lex code for removing comment from given C-file and output is stored in “out.c”
+
+Source Code
+
+ int n,m;
+%%
+"//"[^\n]*		n++; 
+"/*"[A-Za-z0-9 {}|<>\t\n#!-]*"*/"			
+ .		m++; fprintf(yyout,"%s",yytext);
+%%
+int main(int argc,char **argv)
+{
+	extern FILE *yyin,*yyout;
+	if(argc<2)
+		printf("ERROR! IVALID FILE NAME\n");
+	else{
+		yyin=fopen(argv[1],"r");
+		yyout=fopen("out.c","w");
+		yylex();
+		fclose(yyin);
+		fclose(yyout);
+	}
+	return 0;
+}
+
+ 

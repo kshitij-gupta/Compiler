@@ -1,0 +1,23 @@
+Write a program in LEX to display identifier, operator, separator, keyword
+
+Source Code
+int a,b,c,d,e,f;
+%%
+"int"|"float"|"if"|"else" a++;    		 printf("KEYWORDS{%s}|",yytext);
+[0-9][0-9]*              b++;                   printf("INTEGER NUMBERS{%s}|",yytext);
+[0-9]*"."[0-9]* c++;                           printf("FLOATING NUMBERS{%s}|",yytext);
+","|"{"|"}"|"."|"("|")"|";"|":" d++;            printf("\nSEPRATORS{%s}|",yytext);
+"+"|"++"|"-"|"--"|"*"|"/"|"+"|"%"|"="|"<"|">"|">="|"<="|"=="|"+="|"-="|"*="|"/=" e++;    printf("OPERATORS{%s}|",yytext);
+[A-Za-z_][A-Za-z0-9_]* f++; 		printf("Identifires{%s}|",yytext);
+%%
+int main()
+{
+yylex();
+printf("No of Keywords %d \n",a);
+printf("No of Integer Number %d \n",b);
+printf("No of Floating Number %d \n",c);
+printf("No of Seprators %d \n",d);
+printf("No of Operators  %d \n",e);
+printf("No of Identifires  %d \n",f);
+}
+ 
